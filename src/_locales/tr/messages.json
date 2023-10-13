@@ -123,7 +123,7 @@
     "message": "Sürüm",
     "description": "Sürüm"
   },
-  "usempv": {
+  "useMpv": {
     "message": "Mümkün olduğunda Invidious yerine mpv kullan",
     "description": "'Mümkün olduğunda Invidious yerine mpv kullan' seçeneği etiketi (seçenekler)."
   },

@@ -64,7 +64,7 @@ let invidiousPlayerStyle = document.getElementById("invidious-player-style");
 let invidiousSubtitles = document.getElementById("invidious-subtitles");
 let invidiousAutoplay = document.getElementById("invidious-autoplay");
 let theme = document.getElementById("theme");
-let usempv = document.getElementById("use-mpv");
+let useMpv = document.getElementById("use-mpv");
 let nitterRandomPool = document.getElementById("nitter-random-pool");
 let invidiousRandomPool = document.getElementById("invidious-random-pool");
 let bibliogramRandomPool = document.getElementById("bibliogram-random-pool");
@@ -126,7 +126,7 @@ browser.storage.sync.get(
     "invidiousAutoplay",
     "exceptions",
     "theme",
-    "usempv",
+    "useMpv",
     "nitterRandomPool",
     "invidiousRandomPool",
     "bibliogramRandomPool",
@@ -166,7 +166,7 @@ browser.storage.sync.get(
     invidiousPlayerStyle.value = result.invidiousPlayerStyle || "";
     invidiousSubtitles.value = result.invidiousSubtitles || "";
     invidiousAutoplay.checked = result.invidiousAutoplay;
-    usempv.checked = result.usempv;
+    useMpv.checked = result.useMpv;
     nitterRandomPool.value =
       result.nitterRandomPool || commonHelper.filterInstances(nitterInstances);
     invidiousRandomPool.value =
@@ -407,8 +407,8 @@ persistInvidiousPrefs.addEventListener("change", (event) => {
   browser.storage.sync.set({ persistInvidiousPrefs: event.target.checked });
 });
 
-usempv.addEventListener("change", (event) => {
-  browser.storage.sync.set({ usempv: event.target.checked });
+useMpv.addEventListener("change", (event) => {
+  browser.storage.sync.set({ useMpv: event.target.checked });
 });
 
 const invidiousVolumeChange = debounce(() => {

@@ -131,7 +131,7 @@
     "message": "Versione",
     "description": "Version"
   },
-  "usempv": {
+  "useMpv": {
     "message": "Usa mpv al posto di Invidious quando possibile",
     "description": "Label for 'Use mpv over Invidious when possible' option (options)."
   },

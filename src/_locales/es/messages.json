@@ -139,7 +139,7 @@
     "message": "Versión",
     "description": "Versión"
   },
-  "usempv": {
+  "useMpv": {
     "message": "Usar mpv en vez de Invidious cuando sea posible",
     "description": "Etiqueta para la opción de 'Usar mpv en vez de Invidious cuando sea posible' (opciones)."
   },

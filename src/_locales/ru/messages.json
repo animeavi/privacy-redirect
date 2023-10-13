@@ -151,7 +151,7 @@
     "message": "Версия",
     "description": "Версия."
   },
-  "usempv": {
+  "useMpv": {
     "message": "Использовать mpv поверх Invidious при возможности",
     "description": "Название настройки для 'Использовать mpv поверх Invidious при возможности' (в настройках)."
   },

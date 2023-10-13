@@ -62,7 +62,7 @@ let invidiousVolume;
 let invidiousPlayerStyle;
 let invidiousSubtitles;
 let invidiousAutoplay;
-let usempv;
+let useMpv;
 let nitterRandomPool;
 let invidiousRandomPool;
 let bibliogramRandomPool;
@@ -96,7 +96,7 @@ browser.storage.sync.get(
     "invidiousPlayerStyle",
     "invidiousSubtitles",
     "invidiousAutoplay",
-    "usempv",
+    "useMpv",
     "nitterRandomPool",
     "invidiousRandomPool",
     "bibliogramRandomPool",
@@ -133,7 +133,7 @@ browser.storage.sync.get(
     invidiousPlayerStyle = result.invidiousPlayerStyle;
     invidiousSubtitles = result.invidiousSubtitles || "";
     invidiousAutoplay = result.invidiousAutoplay;
-    usempv = result.usempv;
+    useMpv = result.useMpv;
     nitterRandomPool = result.nitterRandomPool
       ? result.nitterRandomPool.split(",")
       : commonHelper.filterInstances(nitterInstances);
@@ -220,8 +220,8 @@ browser.storage.onChanged.addListener((changes) => {
   if ("invidiousAutoplay" in changes) {
     invidiousAutoplay = changes.invidiousAutoplay.newValue;
   }
-  if ("usempv" in changes) {
-    usempv = changes.usempv.newValue;
+  if ("useMpv" in changes) {
+    useMpv = changes.useMpv.newValue;
   }
   if ("nitterRandomPool" in changes) {
     nitterRandomPool = changes.nitterRandomPool.newValue.split(",");
@@ -255,7 +255,7 @@ function redirectYouTube(url, initiator, type) {
     return null;
   }
 
-  if (usempv && (url.href.includes("/watch?v=") || url.href.includes("/shorts/"))) {
+  if (useMpv && (url.href.includes("/watch?v=") || url.href.includes("/shorts/"))) {
     // https://github.com/akiirui/mpv-handler#encoded-url
     let data = btoa(url);
     let safe = data.replace(/\//g, "_").replace(/\+/g, "-").replace(/\=/g, "");
@@ -600,7 +600,7 @@ browser.webRequest.onBeforeRequest.addListener(
 
 browser.runtime.onInstalled.addListener((details) => {
   browser.storage.sync.get(
-    ["disableSearchEngine", "disableSimplyTranslate", "disableWikipedia"],
+    ["disableSearchEngine", "disableSimplyTranslate", "disableWikipedia", "disableNitter", "disableBibliogram", "disableOsm", "disableReddit", "disableSearchEngine", "useMpv"],
     (result) => {
       if (result.disableSearchEngine === undefined) {
         browser.storage.sync.set({
@@ -615,6 +615,36 @@ browser.runtime.onInstalled.addListener((details) => {
       if (result.disableWikipedia === undefined) {
         browser.storage.sync.set({
           disableWikipedia: true,
+        });
+      }
+      if (result.disableNitter === undefined) {
+        browser.storage.sync.set({
+          disableNitter: true,
+        });
+      }
+      if (result.disableBibliogram === undefined) {
+        browser.storage.sync.set({
+          disableBibliogram: true,
+        });
+      }
+      if (result.disableOsm === undefined) {
+        browser.storage.sync.set({
+          disableOsm: true,
+        });
+      }
+      if (result.disableReddit === undefined) {
+        browser.storage.sync.set({
+          disableReddit: true,
+        });
+      }
+      if (result.disableSearchEngine === undefined) {
+        browser.storage.sync.set({
+          disableSearchEngine: true,
+        });
+      }
+      if (result.useMpv === undefined) {
+        browser.storage.sync.set({
+          useMpv: true,
         });
       }
     }
