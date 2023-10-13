@@ -254,57 +254,15 @@ function redirectYouTube(url, initiator, type) {
   if (disableInvidious || isException(url, initiator)) {
     return null;
   }
-  if (
-    initiator &&
-    (initiator.origin === invidiousInstance ||
-      invidiousInstances.includes(initiator.origin) ||
-      youtubeDomains.includes(initiator.host))
-  ) {
-    return null;
-  }
-  if (url.pathname.match(/iframe_api/) || url.pathname.match(/www-widgetapi/)) {
-    // Don't redirect YouTube Player API.
-    return null;
-  }
-  if (url.host.split(".")[0] === "studio") {
-    // Avoid redirecting `studio.youtube.com`
-    return null;
-  }
-  if (onlyEmbeddedVideo && type !== "sub_frame") {
-    return null;
-  }
+
   if (usempv && type === "main_frame" && (url.href.includes("/watch?v=") || url.href.includes("/shorts/"))) {
     // https://github.com/akiirui/mpv-handler#encoded-url
     let data = btoa(url);
     let safe = data.replace(/\//g, "_").replace(/\+/g, "-").replace(/\=/g, "");
     return `mpv://play/${safe}/`;
+  } else {
+    return null;
   }
-  // Apply settings
-  if (alwaysProxy) {
-    url.searchParams.append("local", true);
-  }
-  if (videoQuality) {
-    url.searchParams.append("quality", videoQuality);
-  }
-  if (invidiousDarkMode) {
-    url.searchParams.append("dark_mode", invidiousDarkMode);
-  }
-  if (invidiousVolume) {
-    url.searchParams.append("volume", invidiousVolume);
-  }
-  if (invidiousPlayerStyle) {
-    url.searchParams.append("player_style", invidiousPlayerStyle);
-  }
-  if (invidiousSubtitles) {
-    url.searchParams.append("subtitles", invidiousSubtitles);
-  }
-  if (invidiousAutoplay) {
-    url.searchParams.append("autoplay", 1);
-  }
-
-  return `${
-    invidiousInstance || commonHelper.getRandomInstance(invidiousRandomPool)
-  }${url.pathname.replace("/shorts", "")}${url.search}`;
 }
 
 function redirectTwitter(url, initiator) {
