@@ -123,9 +123,9 @@
     "message": "Sürüm",
     "description": "Sürüm"
   },
-  "useFreeTube": {
-    "message": "Mümkün olduğunda Invidious yerine FreeTube kullan",
-    "description": "'Mümkün olduğunda Invidious yerine FreeTube kullan' seçeneği etiketi (seçenekler)."
+  "usempv": {
+    "message": "Mümkün olduğunda Invidious yerine mpv kullan",
+    "description": "'Mümkün olduğunda Invidious yerine mpv kullan' seçeneği etiketi (seçenekler)."
   },
   "nitterRandomPool": {
     "message": "Nitter rastgele servis havuzu (virgülle ayrılmış)",

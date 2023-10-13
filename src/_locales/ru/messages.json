@@ -151,9 +151,9 @@
     "message": "Версия",
     "description": "Версия."
   },
-  "useFreeTube": {
-    "message": "Использовать FreeTube поверх Invidious при возможности",
-    "description": "Название настройки для 'Использовать FreeTube поверх Invidious при возможности' (в настройках)."
+  "usempv": {
+    "message": "Использовать mpv поверх Invidious при возможности",
+    "description": "Название настройки для 'Использовать mpv поверх Invidious при возможности' (в настройках)."
   },
   "nitterRandomPool": {
     "message": "Список случайных сервисов Nitter (разделяется запятой)",

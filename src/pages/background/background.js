@@ -62,7 +62,7 @@ let invidiousVolume;
 let invidiousPlayerStyle;
 let invidiousSubtitles;
 let invidiousAutoplay;
-let useFreeTube;
+let usempv;
 let nitterRandomPool;
 let invidiousRandomPool;
 let bibliogramRandomPool;
@@ -96,7 +96,7 @@ browser.storage.sync.get(
     "invidiousPlayerStyle",
     "invidiousSubtitles",
     "invidiousAutoplay",
-    "useFreeTube",
+    "usempv",
     "nitterRandomPool",
     "invidiousRandomPool",
     "bibliogramRandomPool",
@@ -133,7 +133,7 @@ browser.storage.sync.get(
     invidiousPlayerStyle = result.invidiousPlayerStyle;
     invidiousSubtitles = result.invidiousSubtitles || "";
     invidiousAutoplay = result.invidiousAutoplay;
-    useFreeTube = result.useFreeTube;
+    usempv = result.usempv;
     nitterRandomPool = result.nitterRandomPool
       ? result.nitterRandomPool.split(",")
       : commonHelper.filterInstances(nitterInstances);
@@ -220,8 +220,8 @@ browser.storage.onChanged.addListener((changes) => {
   if ("invidiousAutoplay" in changes) {
     invidiousAutoplay = changes.invidiousAutoplay.newValue;
   }
-  if ("useFreeTube" in changes) {
-    useFreeTube = changes.useFreeTube.newValue;
+  if ("usempv" in changes) {
+    usempv = changes.usempv.newValue;
   }
   if ("nitterRandomPool" in changes) {
     nitterRandomPool = changes.nitterRandomPool.newValue.split(",");
@@ -273,8 +273,11 @@ function redirectYouTube(url, initiator, type) {
   if (onlyEmbeddedVideo && type !== "sub_frame") {
     return null;
   }
-  if (useFreeTube && type === "main_frame") {
-    return `freetube://${url}`;
+  if (usempv && type === "main_frame") {
+    // https://github.com/akiirui/mpv-handler#encoded-url
+    let data = btoa(url);
+    let safe = data.replace(/\//g, "_").replace(/\+/g, "-").replace(/\=/g, "");
+    return `mpv://play/${safe}/?quality=1080p&v_codec=av01`;
   }
   // Apply settings
   if (alwaysProxy) {

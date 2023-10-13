@@ -139,9 +139,9 @@
     "message": "Version",
     "description": "Version"
   },
-  "useFreeTube": {
-    "message": "Use FreeTube over Invidious when possible",
-    "description": "Label for 'Use FreeTube over Invidious when possible' option (options)."
+  "usempv": {
+    "message": "Use mpv over Invidious when possible",
+    "description": "Label for 'Use mpv over Invidious when possible' option (options)."
   },
   "nitterRandomPool": {
     "message": "Nitter random instance pool (comma-separated)",
