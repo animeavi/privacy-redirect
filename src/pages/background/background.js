@@ -255,7 +255,7 @@ function redirectYouTube(url, initiator, type) {
     return null;
   }
 
-  if (usempv && type === "main_frame" && (url.href.includes("/watch?v=") || url.href.includes("/shorts/"))) {
+  if (usempv && (url.href.includes("/watch?v=") || url.href.includes("/shorts/"))) {
     // https://github.com/akiirui/mpv-handler#encoded-url
     let data = btoa(url);
     let safe = data.replace(/\//g, "_").replace(/\+/g, "-").replace(/\=/g, "");
