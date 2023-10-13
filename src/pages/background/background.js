@@ -273,11 +273,11 @@ function redirectYouTube(url, initiator, type) {
   if (onlyEmbeddedVideo && type !== "sub_frame") {
     return null;
   }
-  if (usempv && type === "main_frame") {
+  if (usempv && type === "main_frame" && (url.href.includes("/watch?v=") || url.href.includes("/shorts/"))) {
     // https://github.com/akiirui/mpv-handler#encoded-url
     let data = btoa(url);
     let safe = data.replace(/\//g, "_").replace(/\+/g, "-").replace(/\=/g, "");
-    return `mpv://play/${safe}/?quality=1080p&v_codec=av01`;
+    return `mpv://play/${safe}/`;
   }
   // Apply settings
   if (alwaysProxy) {
